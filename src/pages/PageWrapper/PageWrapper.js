@@ -64,16 +64,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Page = ({ children, loggedIn = false }) => {
+const Page = ({ children, loggedIn = false, mainPage = true }) => {
   const classes = useStyles();
   return (
     <PageWrapper maxWidth='md'>
       <AppBar position='sticky'>
         <Toolbar>
           <Typography variant='h6' className={classes.title}>
-            <Link className={classes.text} to={mobileDetected ? '' : '/'}>
-              ExpIt
-            </Link>
+            {mainPage ? (
+              'ExpIt'
+            ) : (
+              <Link className={classes.text} to={mobileDetected ? '' : '/'}>
+                {' '}
+                'На головну'{' '}
+              </Link>
+            )}
           </Typography>
           {!mobileDetected && !loggedIn && (
             <Fragment>

@@ -32,7 +32,7 @@ function App() {
                   <Profile />
                 </PrivateRoute>
                 <Route path='/registration'></Route>
-                <Route path='/'>
+                <Route path='/' mainPage>
                   <Home />
                 </Route>
               </Switch>
