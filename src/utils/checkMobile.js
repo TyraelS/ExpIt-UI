@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const mobileDetected = (() => {
   let check = false;
   (function(a) {

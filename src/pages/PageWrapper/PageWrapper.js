@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import indigo from '@material-ui/core/colors/indigo';
-import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
 import { makeStyles, withStyles, withTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,11 +20,10 @@ const white = '#fff';
 const PageWrapper = withStyles({
   root: {
     minHeight: '100vh',
-    maxWidth: mobileDetected ? '100%' : '1080px',
-    margin: '0 auto',
-    backgroundColor: white
+    backgroundColor: white,
+    padding: 0
   }
-})(Paper);
+})(Container);
 
 const BottomNavigationStyled = withStyles({
   root: {
@@ -68,51 +67,54 @@ const useStyles = makeStyles(theme => ({
 const Page = ({ children, loggedIn = false }) => {
   const classes = useStyles();
   return (
-    <PageWrapper square>
-      {!mobileDetected && (
-        <AppBar position='static'>
-          <Toolbar>
-            <Typography variant='h6' className={classes.title}>
-              <Link className={classes.text} to='/'>
-                ExpIt
-              </Link>
-            </Typography>
-            {!loggedIn && (
-              <Fragment>
-                <Button className={classes.button} color='inherit'>
-                  <Link to='/login' className={classes.text}>
-                    Увійти
-                  </Link>
-                </Button>
-                <Button
-                  className={(classes.button, classes.buttonAccent)}
-                  variant='contained'
-                  color='primary'>
-                  <Link to='/registration'>Реєстрація</Link>
-                </Button>
-              </Fragment>
-            )}
-          </Toolbar>
-        </AppBar>
-      )}
+    <PageWrapper maxWidth='md'>
+      <AppBar position='sticky'>
+        <Toolbar>
+          <Typography variant='h6' className={classes.title}>
+            <Link className={classes.text} to={mobileDetected ? '' : '/'}>
+              ExpIt
+            </Link>
+          </Typography>
+          {!mobileDetected && !loggedIn && (
+            <Fragment>
+              <Button className={classes.button} color='inherit'>
+                <Link to='/login' className={classes.text}>
+                  Увійти
+                </Link>
+              </Button>
+              <Button
+                className={(classes.button, classes.buttonAccent)}
+                variant='contained'
+                color='primary'>
+                <Link to='/registration'>Реєстрація</Link>
+              </Button>
+            </Fragment>
+          )}
+        </Toolbar>
+      </AppBar>
       {children}
       {mobileDetected && (
         <BottomNavigationStyled
           onChange={(event, newValue) => {}}
-          color='secondary'
           showLabels
           className={classes.root}>
           <BottomNavigationAction
+            component={Link}
+            to='/'
             className={classes.icon}
             label='Головна'
             icon={<Home />}
           />
           <BottomNavigationAction
+            component={Link}
+            to='/expertises'
             className={classes.icon}
             label='Експертизи'
             icon={<ListAlt />}
           />
           <BottomNavigationAction
+            component={Link}
+            to='/profile'
             className={classes.icon}
             label='Профіль'
             icon={<AccountCircle />}
