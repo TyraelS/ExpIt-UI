@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, Card, CardActionArea, CardActions, CardContent, Button, Typography } from '@material-ui/core';
 
+import NavLink from '../../components/NavLink';
 import { fetchExpertises } from '../../ducks';
 import { apiUrl, mobileDetected } from '../../utils';
 import { getExpertises } from '../../selectors';
@@ -47,51 +48,56 @@ const Home = () => {
 			<div className={classes.root}>
 				{expertises.map(expertise =>
 					<Card key={expertise.id} className={classes.card} variant='outlined'>
-						<CardActionArea style={{ height: mobileDetected ? '330px' : '300px' }}>
-							<CardContent style={{ position: 'absolute', top: 0 }}>
-								<Typography gutterBottom variant="h5" component="h2">
-									{expertise.name}
+						<NavLink to={`/expertise/${expertise.id}`}>
+							<CardActionArea style={{ height: mobileDetected ? '330px' : '300px' }}>
+								<CardContent style={{ position: 'absolute', top: 0 }}>
+									<Typography gutterBottom variant="h5" component="h2">
+										{expertise.name}
+									</Typography>
+									<Typography variant="body2" component="p">
+										Створив: {expertise.creator_name}
+									</Typography>
+									<Typography variant="body2" component="p">
+										Альтернативи:
 								</Typography>
-								<Typography variant="body2" component="p">
-									Створив: {expertise.creator_name}
-								</Typography>
-								<Typography variant="body2" component="p">
-									Альтернативи:
-								</Typography>
-								<div className={classes.demo}>
-									<List>
-										{expertise.keys.map((key, index) =>
-											index < 3 &&
-											<ListItem key={key}>
-												<Typography variant="body2" component="p">
-													- {key}
+									<div className={classes.demo}>
+										<List>
+											{expertise.keys.map((key, index) =>
+												index < 3 &&
+												<ListItem key={key}>
+													<Typography variant="body2" component="p">
+														- {key}
+													</Typography>
+												</ListItem>
+											)}
+											{expertise.keys.length > 3 &&
+												<ListItem>
+													<Typography variant="body2" component="p">
+														та інші
 												</Typography>
-											</ListItem>
-										)}
-										{expertise.keys.length > 3 &&
-											<ListItem>
-												<Typography variant="body2" component="p">
-													та інші
-												</Typography>
-											</ListItem>}
-									</List>
-								</div>
-								<Typography variant="body2" color="textSecondary" component="p">
-									Ви можете прийняти участь в оцінці альтернатив експертизи, якщо зареєстровані.
+												</ListItem>}
+										</List>
+									</div>
+									<Typography variant="body2" color="textSecondary" component="p">
+										Ви можете прийняти участь в оцінці альтернатив експертизи, якщо зареєстровані.
 								</Typography>
-							</CardContent>
-						</CardActionArea>
+								</CardContent>
+							</CardActionArea>
+						</NavLink>
 						<CardActions>
 							<Button size="medium" color="primary">
 								Оцінити
-		 				</Button>
+		 					</Button>
 							<Button size="medium" color="primary">
-								Дізнатись більше
-		  				</Button>
+								<NavLink to={`/expertise/${expertise.id}`}>
+									Дізнатись більше
+								</NavLink>
+							</Button>
 						</CardActions>
 					</Card>
-				)}
-			</div>
+				)
+				}
+			</div >
 		</div >
 	);
 };
