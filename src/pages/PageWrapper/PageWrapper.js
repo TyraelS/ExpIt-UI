@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Home from '@material-ui/icons/Home';
-import ListAlt from '@material-ui/icons/ListAlt';
+import AddBox from '@material-ui/icons/AddBox';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from 'react-router-dom';
 import { mobileDetected } from '../../utils';
@@ -32,7 +32,7 @@ const BottomNavigationStyled = withStyles({
 		position: 'fixed',
 		bottom: '0',
 		width: '100%',
-		borderTop: `1px solid ${ main }`
+		borderTop: `1px solid ${main}`
 	}
 })(BottomNavigation);
 
@@ -73,20 +73,20 @@ const Page = ({ children, loggedIn = false }) => {
 		<PageWrapper maxWidth="md">
 			<AppBar position="sticky">
 				<Toolbar>
-					<Typography variant="h6" className={ classes.title }>
-						<Link className={ classes.text } to={ mobileDetected ? '' : '/' }>
-                ExpIt
+					<Typography variant="h6" className={classes.title}>
+						<Link className={classes.text} to={mobileDetected ? '' : '/'}>
+							ExpIt
 						</Link>
 					</Typography>
 					{!mobileDetected && !loggedIn && (
 						<Fragment>
-							<Button className={ classes.button } color="inherit">
-								<Link to="/login" className={ classes.text }>
-                  Увійти
+							<Button className={classes.button} color="inherit">
+								<Link to="/login" className={classes.text}>
+									Увійти
 								</Link>
 							</Button>
 							<Button
-								className={ (classes.button, classes.buttonAccent) }
+								className={(classes.button, classes.buttonAccent)}
 								variant="contained"
 								color="primary">
 								<Link to="/registration">Реєстрація</Link>
@@ -98,29 +98,29 @@ const Page = ({ children, loggedIn = false }) => {
 			{children}
 			{mobileDetected && (
 				<BottomNavigationStyled
-					onChange={ (event, newValue) => {} }
+					onChange={(event, newValue) => { }}
 					showLabels
-					className={ classes.root }>
+					className={classes.root}>
 					<BottomNavigationAction
-						component={ Link }
+						component={Link}
 						to="/"
-						className={ classes.icon }
+						className={classes.icon}
 						label="Головна"
-						icon={ <Home /> }
+						icon={<Home />}
 					/>
 					<BottomNavigationAction
-						component={ Link }
+						component={Link}
 						to="/expertises"
-						className={ classes.icon }
-						label="Експертизи"
-						icon={ <ListAlt /> }
+						className={classes.icon}
+						label="Створити"
+						icon={<AddBox />}
 					/>
 					<BottomNavigationAction
-						component={ Link }
+						component={Link}
 						to="/profile"
-						className={ classes.icon }
+						className={classes.icon}
 						label="Профіль"
-						icon={ <AccountCircle /> }
+						icon={<AccountCircle />}
 					/>
 				</BottomNavigationStyled>
 			)}

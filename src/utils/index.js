@@ -1,3 +1,4 @@
 import mobileDetected from './checkMobile';
+import apiUrl from './requestHelpers';
 
-export { mobileDetected };
+export { mobileDetected, apiUrl };
