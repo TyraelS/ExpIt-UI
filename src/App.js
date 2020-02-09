@@ -9,6 +9,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
+import ExpertiseView from './pages/ExpertiseView';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
@@ -22,17 +23,18 @@ const style = {
 
 function App() {
 	return (
-		<div style={ style }>
-			<Provider store={ store }>
-				<ThemeProvider theme={ theme }>
+		<div style={style}>
+			<Provider store={store}>
+				<ThemeProvider theme={theme}>
 					<Router>
 						<PageWrapper>
 							<Switch>
-								<Route path="/login"><Login/></Route>
+								<Route path="/login"><Login /></Route>
 								<PrivateRoute path="/profile">
 									<Profile />
 								</PrivateRoute>
 								<Route path="/registration"><Registration /></Route>
+								<Route path="/expertise/:expertiseId"><ExpertiseView /></Route>
 								<Route path="/" mainPage>
 									<Home />
 								</Route>

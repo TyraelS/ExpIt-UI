@@ -2,9 +2,9 @@ import { createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import { Map } from 'immutable';
 
-import { expertiseEntities } from '../ducks';
+import { expertiseEntities, expertise } from '../ducks';
 
-const reducer = combineReducers({ expertiseEntities });
+const reducer = combineReducers({ expertiseEntities, expertise });
 
 const store = createStore(
 	reducer,
