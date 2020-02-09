@@ -20,7 +20,8 @@ const useStyles = makeStyles(() => ({
 		height: '400px'
 	},
 	root: {
-		paddingBottom: '56px'
+		paddingBottom: '56px',
+		overflowX: 'hidden'
 	}
 }));
 
@@ -111,7 +112,7 @@ const ExpertiseView = ({ match }) => {
 		axios.get(`${apiUrl}/expertise?id=${match.params.expertiseId}&opinions=true&result=true`).then(response => {
 			dispatch(fetchSev(response.data));
 		});
-	}, [dispatch]);
+	}, [dispatch, match.params.expertiseId]);
 
 	const data = generateChartData(expertise);
 	const chartColors = getChartColors(expertise.result, 2, -2);

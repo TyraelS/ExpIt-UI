@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, Card, CardActionArea, CardActions, CardContent, Button, Typography } from '@material-ui/core';
-import { ResponsiveBar } from '@nivo/bar';
 
 import NavLink from '../../components/NavLink';
 import { fetchExpertises } from '../../ducks';
